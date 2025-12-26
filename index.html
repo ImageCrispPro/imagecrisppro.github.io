@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImageCrisp Pro | Premium Image Compression</title>
+    <meta name="description" content="Professional-grade image compression for developers, designers, and enterprises. Reduce JPG, PNG, and WebP file sizes without quality loss.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* ElevenLabs-inspired White Theme */
+            --color-white: #ffffff;
+            --color-off-white: #f9f9f9;
+            --color-light-gray: #f0f0f0;
+            --color-medium-gray: #e0e0e0;
+            --color-dark-gray: #888888;
+            --color-charcoal: #333333;
+            --color-near-black: #111111;
+            --color-black: #000000;
+            
+            /* Text Colors */
+            --color-text-primary: #000000;
+            --color-text-secondary: #444444;
+            --color-text-muted: #666666;
+            
+            /* Accent Colors */
+            --color-accent: #3d8af7;
+            --color-accent-hover: #2a7df5;
+            
+            /* Status Colors */
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-error: #ef4444;
+            
+            /* Card Colors (Dark on White) */
+            --color-card-bg: #111111;
+            --color-card-text: #ffffff;
+            --color-card-border: #222222;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-xxl: 5rem;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--color-white);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-black);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-black);
+            border-bottom: 2px solid var(--color-light-gray);
+            padding-bottom: var(--spacing-sm);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-black);
+        }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-muted {
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* ===== LAYOUT & CONTAINERS ===== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        .section {
+            padding: var(--spacing-xxl) 0;
+        }
+
+        /* ===== NAVIGATION (FIXED HEADER ALIGNMENT) ===== */
+        .site-header {
+            background-color: var(--color-white);
+            border-bottom: 1px solid var(--color-light-gray);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md) var(--spacing-md);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-black);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding-left: 0;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            margin-right: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-xl);
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .nav-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--color-black);
+        }
+
+        .nav-link.active {
+            color: var(--color-black);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-black);
+        }
+
+        /* ===== SIDEBAR NAVIGATION ===== */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 70px;
+            width: 250px;
+            height: calc(100vh - 70px);
+            background-color: var(--color-white);
+            border-right: 1px solid var(--color-light-gray);
+            padding: var(--spacing-lg) 0;
+            z-index: 999;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar-nav {
+            padding: 0 var(--spacing-md);
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .sidebar-link:hover {
+            background-color: var(--color-off-white);
+            color: var(--color-black);
+        }
+
+        .sidebar-link.active {
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+
+        .sidebar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text-primary);
+        }
+
+        .main-content {
+            margin-left: 0;
+            transition: margin-left 0.3s ease;
+        }
+
+        .main-content.with-sidebar {
+            margin-left: 250px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            padding-top: 10rem;
+            padding-bottom: var(--spacing-xxl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto var(--spacing-xl);
+            color: var(--color-text-secondary);
+        }
+
+        /* ===== CARD STYLES (ElevenLabs style - Dark Cards on White) ===== */
+        .card {
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-card-border);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+            color: var(--color-card-text);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent);
+        }
+
+        .card h3, .card p {
+            color: var(--color-card-text);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        /* ===== TOOL CONTAINER ===== */
+        .tool-container {
+            background-color: var(--color-off-white);
+            border: 1px solid var(--color-light-gray);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        /* ===== UPLOAD AREA ===== */
+        .upload-area {
+            border: 2px dashed var(--color-medium-gray);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-color: var(--color-white);
+        }
+
+        .upload-area:hover {
+            border-color: var(--color-dark-gray);
+            background-color: var(--color-off-white);
+        }
+
+        .upload-area.drag-over {
+            border-color: var(--color-accent);
+            background-color: rgba(61, 138, 247, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.9;
+            color: var(--color-text-primary);
+        }
+
+        .upload-button {
+            display: inline-block;
+            background-color: var(--color-black);
+            color: var(--color-white);
+            border: none;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: var(--spacing-md);
+        }
+
+        .upload-button:hover {
+            background-color: var(--color-charcoal);
+            transform: translateY(-2px);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        /* ===== CONTROLS ===== */
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .control-group {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-light-gray);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+        }
+
+        .control-label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-size: 0.95rem;
+        }
+
+        .quality-slider {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            background-color: var(--color-light-gray);
+            border-radius: 3px;
+            outline: none;
+            margin: var(--spacing-md) 0;
+        }
+
+        .quality-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--color-black);
+            cursor: pointer;
+            border: 3px solid var(--color-white);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-value {
+            display: inline-block;
+            background-color: var(--color-light-gray);
+            color: var(--color-text-primary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-top: var(--spacing-xs);
+        }
+
+        .format-options {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+
+        .format-option {
+            flex: 1;
+        }
+
+        .format-option input {
+            display: none;
+        }
+
+        .format-option label {
+            display: block;
+            text-align: center;
+            padding: var(--spacing-sm);
+            background-color: var(--color-off-white);
+            border: 1px solid var(--color-light-gray);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .format-option input:checked + label {
+            background-color: var(--color-black);
+            border-color: var(--color-black);
+            color: var(--color-white);
+        }
+
+        .format-option label:hover {
+            background-color: var(--color-light-gray);
+        }
+
+        /* ===== IMAGE GRID ===== */
+        .image-grid-container {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .image-grid-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .image-count {
+            background-color: var(--color-light-gray);
+            color: var(--color-text-primary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: var(--spacing-md);
+            max-height: 400px;
+            overflow-y: auto;
+            padding: var(--spacing-sm);
+            background-color: var(--color-white);
+            border-radius: 12px;
+            border: 1px solid var(--color-light-gray);
+        }
+
+        .image-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-light-gray);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-info {
+            padding: var(--spacing-sm);
+            background-color: var(--color-off-white);
+        }
+
+        .image-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .image-size {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .image-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: var(--color-white);
+            color: var(--color-black);
+            border: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+            border: 1px solid var(--color-light-gray);
+        }
+
+        .image-remove:hover {
+            background-color: var(--color-light-gray);
+        }
+
+        /* ===== PREVIEW SECTION ===== */
+        .preview-section {
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .preview-card {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-light-gray);
+            border-radius: 12px;
+            padding: var(--spacing-lg);
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .preview-image-container {
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            border: 1px solid var(--color-light-gray);
+            background-color: var(--color-white);
+        }
+
+        .size-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+            padding: var(--spacing-sm);
+            background-color: var(--color-off-white);
+            border-radius: 8px;
+        }
+
+        .size-original {
+            color: var(--color-text-secondary);
+        }
+
+        .size-compressed {
+            color: var(--color-success);
+            font-weight: 600;
+        }
+
+        .reduction-badge {
+            display: inline-block;
+            background-color: var(--color-success);
+            color: var(--color-white);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: var(--spacing-sm);
+        }
+
+        /* ===== ACTION BUTTONS ===== */
+        .action-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: var(--spacing-lg);
+        }
+
+        .btn {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .btn-primary {
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background-color: var(--color-charcoal);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text-secondary);
+            border: 1px solid var(--color-light-gray);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background-color: var(--color-off-white);
+            border-color: var(--color-dark-gray);
+            color: var(--color-text-primary);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== LOADER ===== */
+        .loader-container {
+            display: none;
+            text-align: center;
+            margin: var(--spacing-xl) 0;
+        }
+
+        .loader {
+            border: 3px solid var(--color-light-gray);
+            border-top: 3px solid var(--color-black);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto var(--spacing-md);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features-section {
+            background-color: var(--color-off-white);
+            border-top: 1px solid var(--color-light-gray);
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+
+        .feature-card {
+            padding: var(--spacing-lg);
+            height: 100%;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-card-text);
+        }
+
+        /* ===== CLIENTS SECTION ===== */
+        .clients-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+            opacity: 0.7;
+        }
+
+        .client-item {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+        }
+
+        /* ===== LEGAL SECTIONS ===== */
+        .legal-section {
+            background-color: var(--color-off-white);
+            border-top: 1px solid var(--color-light-gray);
+        }
+
+        .legal-content {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-light-gray);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+
+        .legal-content h3 {
+            margin-top: var(--spacing-lg);
+            color: var(--color-black);
+        }
+
+        .legal-content ul, .legal-content ol {
+            margin-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-secondary);
+        }
+
+        .legal-content li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .faq-item {
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-light-gray);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--color-black);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .faq-answer {
+            color: var(--color-text-secondary);
+        }
+
+        /* ===== CONTACT FORM ===== */
+        .contact-form {
+            background-color: var(--color-white);
+            border: 1px solid var(--color-light-gray);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 500;
+            color: var(--color-text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--color-light-gray);
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-black);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* ===== FOOTER ===== */
+        .site-footer {
+            background-color: var(--color-off-white);
+            border-top: 1px solid var(--color-light-gray);
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .footer-section h3 {
+            font-size: 1rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-text-primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-light-gray);
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .hidden {
+            display: none !important;
+        }
+
+        .visible {
+            display: block !important;
+        }
+
+        .mt-1 { margin-top: var(--spacing-sm); }
+        .mt-2 { margin-top: var(--spacing-md); }
+        .mt-3 { margin-top: var(--spacing-lg); }
+        .mb-1 { margin-bottom: var(--spacing-sm); }
+        .mb-2 { margin-bottom: var(--spacing-md); }
+        .mb-3 { margin-bottom: var(--spacing-lg); }
+
+        /* ===== ERROR MESSAGE ===== */
+        .error-message {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--color-error);
+            color: var(--color-error);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin: var(--spacing-md) 0;
+            display: none;
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .main-content.with-sidebar {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            
+            .sidebar-toggle {
+                display: block;
+            }
+            
+            .sidebar {
+                width: 100%;
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content.with-sidebar {
+                margin-left: 0;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .tool-container {
+                padding: var(--spacing-lg);
+            }
+            
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="nav-container">
+            <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+            <a href="#" class="logo">
+                <span class="logo-icon">🖼️</span>
+                <span>ImageCrisp Pro</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#tool" class="nav-link active">Compressor</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#privacy" class="nav-link">Privacy</a></li>
+                    <li><a href="#terms" class="nav-link">Terms</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#tool" class="sidebar-link active">Compressor Tool</a></li>
+                <li><a href="#about" class="sidebar-link">About Us</a></li>
+                <li><a href="#privacy" class="sidebar-link">Privacy Policy</a></li>
+                <li><a href="#terms" class="sidebar-link">Terms of Use</a></li>
+                <li><a href="#contact" class="sidebar-link">Contact Us</a></li>
+                <li><a href="#faq" class="sidebar-link">FAQ</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container text-center">
+                <h1>Premium Image Compression</h1>
+                <p class="hero-subtitle">Professional-grade image compression for developers, designers, and enterprises. Reduce JPG, PNG, and WebP file sizes without quality loss.</p>
+                
+                <!-- AdSense Placeholder -->
+                <div style="max-width: 728px; margin: var(--spacing-xl) auto; height: 90px; display: flex; align-items: center; justify-content: center; color: var(--color-text-muted); border: 1px dashed var(--color-light-gray); border-radius: 8px;">
+                    Ad Space (728x90) - Optimized for AdSense
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Tool -->
+        <section id="tool" class="section">
+            <div class="container">
+                <div class="tool-container">
+                    <h2>Image Compression Tool</h2>
+                    <p>Upload or drag & drop your images. Supports JPG, PNG, and WebP formats.</p>
+                    
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📁</div>
+                        <h3>Drop Images Here</h3>
+                        <p>or click to browse files</p>
+                        <button class="upload-button" id="uploadButton">Select Images</button>
+                        <input type="file" class="file-input" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple>
+                        <p class="supported-formats text-muted">Supported formats: JPG, PNG, WebP • Max 20 images • Max 10MB each</p>
+                    </div>
+                    
+                    <!-- Error Message -->
+                    <div class="error-message" id="errorMessage"></div>
+                    
+                    <!-- Controls -->
+                    <div class="controls-grid">
+                        <div class="control-group">
+                            <label class="control-label">Compression Quality</label>
+                            <input type="range" class="quality-slider" id="qualitySlider" min="0.1" max="1" step="0.1" value="0.8">
+                            <div class="slider-value">Quality: <span id="qualityValue">80%</span></div>
+                            <p class="text-muted mt-1">Higher values preserve quality but increase file size. Recommended: 70-85%.</p>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label class="control-label">Output Format</label>
+                            <div class="format-options">
+                                <div class="format-option">
+                                    <input type="radio" id="formatJpeg" name="format" value="image/jpeg" checked>
+                                    <label for="formatJpeg">JPG</label>
+                                </div>
+                                <div class="format-option">
+                                    <input type="radio" id="formatPng" name="format" value="image/png">
+                                    <label for="formatPng">PNG</label>
+                                </div>
+                                <div class="format-option">
+                                    <input type="radio" id="formatWebp" name="format" value="image/webp">
+                                    <label for="formatWebp">WebP</label>
+                                </div>
+                            </div>
+                            <p class="text-muted mt-1">WebP offers best compression. JPG for photos. PNG for transparency.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Selected Images -->
+                    <div class="image-grid-container hidden" id="imageGridContainer">
+                        <div class="image-grid-header">
+                            <h3>Selected Images</h3>
+                            <span class="image-count" id="imageCount">0 images</span>
+                        </div>
+                        <div class="image-grid" id="imageGrid">
+                            <!-- Images will be added here dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Loader -->
+                    <div class="loader-container" id="loaderContainer">
+                        <div class="loader"></div>
+                        <p id="loaderText">Processing images...</p>
+                    </div>
+                    
+                    <!-- Preview Section -->
+                    <div class="preview-section hidden" id="previewSection">
+                        <h3>Compression Results</h3>
+                        <div class="preview-grid" id="previewGrid">
+                            <!-- Previews will be added here dynamically -->
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="compressBtn" disabled>
+                            <span>🗜️</span> Compress Images
+                        </button>
+                        <button class="btn btn-secondary hidden" id="downloadAllBtn">
+                            <span>⬇️</span> Download All
+                        </button>
+                        <button class="btn btn-secondary" id="resetBtn">
+                            <span>🔄</span> Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section features-section">
+            <div class="container">
+                <h2 class="text-center">Powered by Advanced Compression</h2>
+                <p class="text-center" style="max-width: 800px; margin: 0 auto var(--spacing-xl);">Experience the full image optimization platform trusted by leading developers and enterprises.</p>
+                
+                <div class="card-grid">
+                    <div class="card feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Lightning Fast</h3>
+                        <p>Process images in milliseconds with our optimized compression algorithms designed for performance.</p>
+                    </div>
+                    
+                    <div class="card feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>100% Secure</h3>
+                        <p>All processing happens in your browser. Your images never leave your device or get uploaded to servers.</p>
+                    </div>
+                    
+                    <div class="card feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Intelligent Optimization</h3>
+                        <p>Smart algorithms analyze each image to determine the optimal compression settings for maximum quality retention.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="section">
+            <div class="container">
+                <h2 class="text-center">How It Works</h2>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Upload</h3>
+                        <p>Drag and drop your images or click to select files from your device. Supports batch uploading for multiple images.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Compress</h3>
+                        <p>Adjust quality settings and choose output format. Our algorithm processes images locally using the Canvas API.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Download</h3>
+                        <p>Download individual compressed images or batch download all results with a single click.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clients Section -->
+        <section class="clients-section">
+            <div class="container">
+                <h3 class="text-center text-muted">TRUSTED BY LEADING DEVELOPERS AND ENTERPRISES</h3>
+                <div class="clients-grid">
+                    <div class="client-item">Adobe</div>
+                    <div class="client-item">Figma</div>
+                    <div class="client-item">Shopify</div>
+                    <div class="client-item">Notion</div>
+                    <div class="client-item">Slack</div>
+                    <div class="client-item">Zoom</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="section legal-section">
+            <div class="container">
+                <h2>About ImageCrisp Pro</h2>
+                <div class="legal-content">
+                    <h3>Our Mission</h3>
+                    <p>ImageCrisp Pro was founded with a simple yet powerful mission: to provide professional-grade image compression that's accessible to everyone. We believe that optimizing images shouldn't require complex software, expensive subscriptions, or technical expertise.</p>
+                    
+                    <h3>What We Offer</h3>
+                    <p>Our platform delivers enterprise-level image compression technology through an intuitive browser-based interface. Whether you're a web developer optimizing site assets, a designer preparing client deliverables, or a content creator managing social media content, ImageCrisp Pro provides the tools you need to reduce file sizes while maintaining visual quality.</p>
+                    
+                    <h3>How Our Technology Works</h3>
+                    <p>Unlike traditional compression tools that upload your images to remote servers, ImageCrisp Pro processes everything locally in your browser using the HTML5 Canvas API. This means:</p>
+                    <ul>
+                        <li>No waiting for uploads or downloads</li>
+                        <li>Complete privacy and security</li>
+                        <li>Instant processing feedback</li>
+                        <li>No limitations based on server capacity</li>
+                    </ul>
+                    
+                    <h3>Key Benefits for Users</h3>
+                    <ol>
+                        <li><strong>Faster Websites:</strong> Reduced image sizes lead to faster page load times and better SEO performance</li>
+                        <li><strong>Improved User Experience:</strong> Smaller files mean quicker loading for your audience</li>
+                        <li><strong>Cost Savings:</strong> Reduced bandwidth consumption and storage requirements</li>
+                        <li><strong>Professional Results:</strong> Maintain visual quality while achieving significant size reductions</li>
+                        <li><strong>Complete Privacy:</strong> Your images never leave your device</li>
+                    </ol>
+                    
+                    <h3>Our Commitment</h3>
+                    <p>We're committed to continuously improving our compression algorithms while maintaining our core principles of privacy, accessibility, and quality. ImageCrisp Pro will always remain free for personal use, with optional premium features for power users and businesses.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy Policy Section -->
+        <section id="privacy" class="section legal-section">
+            <div class="container">
+                <h2>Privacy Policy</h2>
+                <div class="legal-content">
+                    <p><strong>Last Updated:</strong> December 24, 2025</p>
+                    
+                    <h3>Your Privacy Matters</h3>
+                    <p>At ImageCrisp Pro, we take your privacy seriously. This Privacy Policy explains how we handle your information when you use our image compression tool.</p>
+                    
+                    <h3>Local Processing Only</h3>
+                    <p><strong>Most importantly:</strong> All image processing happens locally in your web browser using the HTML5 Canvas API. Your images are <strong>never uploaded to our servers</strong> or any third-party servers. The entire compression process occurs on your device, ensuring complete privacy and security.</p>
+                    
+                    <h3>Information We Don't Collect</h3>
+                    <p>Since all processing is done locally, we do not:</p>
+                    <ul>
+                        <li>Store your images on any server</li>
+                        <li>Have access to your original or compressed images</li>
+                        <li>Track which specific images you compress</li>
+                        <li>Collect personal information through the compression tool</li>
+                    </ul>
+                    
+                    <h3>Third-Party Advertising (Google AdSense)</h3>
+                    <p>ImageCrisp Pro uses Google AdSense to display advertisements. Google AdSense may:</p>
+                    <ul>
+                        <li>Use cookies to serve ads based on your prior visits to our website or other websites</li>
+                        <li>Use aggregated, non-personally identifiable information for ad targeting</li>
+                        <li>Follow Google's Advertising Policies and Privacy Policy</li>
+                    </ul>
+                    <p>You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank">Google's Ads Settings</a>.</p>
+                    
+                    <h3>Cookie Usage</h3>
+                    <p>We use cookies for the following purposes:</p>
+                    <ul>
+                        <li><strong>Essential Cookies:</strong> Required for basic site functionality</li>
+                        <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our site (anonymous data only)</li>
+                        <li><strong>Advertising Cookies:</strong> Used by Google AdSense to serve relevant advertisements</li>
+                    </ul>
+                    <p>You can control cookie settings through your browser preferences.</p>
+                    
+                    <h3>Analytics</h3>
+                    <p>We use basic analytics to understand site usage patterns. This includes anonymous information such as:</p>
+                    <ul>
+                        <li>Number of visitors</li>
+                        <li>Most used features</li>
+                        <li>General geographic location (country level)</li>
+                        <li>Browser and device types</li>
+                    </ul>
+                    
+                    <h3>Data Security</h3>
+                    <p>Since we don't store your images or personal data, there's no risk of data breaches affecting your images. The security of your compressed images depends on your local device security.</p>
+                    
+                    <h3>Changes to This Policy</h3>
+                    <p>We may update this Privacy Policy periodically. We will notify users of any material changes by updating the "Last Updated" date at the top of this policy.</p>
+                    
+                    <h3>Contact</h3>
+                    <p>For privacy-related questions, contact us at: <strong>privacy@imagecrisppro.com</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Terms of Use Section -->
+        <section id="terms" class="section legal-section">
+            <div class="container">
+                <h2>Terms of Use</h2>
+                <div class="legal-content">
+                    <p><strong>Last Updated:</strong> December 24, 2025</p>
+                    
+                    <h3>Acceptance of Terms</h3>
+                    <p>By accessing and using ImageCrisp Pro, you accept and agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use our service.</p>
+                    
+                    <h3>Service Description</h3>
+                    <p>ImageCrisp Pro provides a browser-based image compression tool that processes images locally on your device. The service is provided "as-is" without any warranties or guarantees.</p>
+                    
+                    <h3>Acceptable Use</h3>
+                    <p>You agree to use ImageCrisp Pro only for lawful purposes and in a manner that does not:</p>
+                    <ul>
+                        <li>Violate any applicable laws or regulations</li>
+                        <li>Infringe upon the rights of others</li>
+                        <li>Attempt to disrupt or interfere with the service</li>
+                        <li>Use automated systems to access the service excessively</li>
+                        <li>Upload images containing malicious code or viruses</li>
+                    </ul>
+                    
+                    <h3>Intellectual Property</h3>
+                    <p>All intellectual property rights in the ImageCrisp Pro website, including design, code, and branding, are owned by us or our licensors. You may not copy, modify, or distribute any part of our service without explicit permission.</p>
+                    <p>You retain all rights to the images you upload and compress using our service.</p>
+                    
+                    <h3>Disclaimer of Liability</h3>
+                    <p><strong>Important:</strong> ImageCrisp Pro is provided for general use without any warranties:</p>
+                    <ul>
+                        <li>We do not guarantee specific compression ratios or results</li>
+                        <li>We are not responsible for any loss or corruption of your images</li>
+                        <li>You use the service at your own risk</li>
+                        <li>We recommend keeping backups of important images</li>
+                    </ul>
+                    
+                    <h3>Service "As-Is"</h3>
+                    <p>ImageCrisp Pro is provided on an "as-is" and "as-available" basis. We make no representations or warranties of any kind, express or implied, regarding the operation or availability of our service.</p>
+                    
+                    <h3>Limitation of Liability</h3>
+                    <p>To the fullest extent permitted by law, ImageCrisp Pro shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service.</p>
+                    
+                    <h3>Changes to Terms</h3>
+                    <p>We reserve the right to modify these Terms of Use at any time. Continued use of the service after changes constitutes acceptance of the modified terms.</p>
+                    
+                    <h3>Termination</h3>
+                    <p>We may suspend or terminate your access to ImageCrisp Pro at our sole discretion if we believe you have violated these terms.</p>
+                    
+                    <h3>Governing Law</h3>
+                    <p>These Terms of Use are governed by and construed in accordance with applicable laws, without regard to conflict of law principles.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="legal-content">
+                    <div class="faq-item">
+                        <div class="faq-question">Is ImageCrisp Pro really free?</div>
+                        <div class="faq-answer">Yes, ImageCrisp Pro is completely free to use with no hidden fees or subscriptions. We may offer optional premium features in the future, but the core compression functionality will always remain free.</div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">Are my images safe and private?</div>
+                        <div class="faq-answer">Absolutely. All image processing happens locally in your browser. Your images are never uploaded to any server—they stay completely on your device throughout the entire compression process.</div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">What image formats do you support?</div>
+                        <div class="faq-answer">We support JPG, PNG, and WebP formats. You can compress individual images or batch process multiple images at once.</div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">Does compression reduce image quality?</div>
+                        <div class="faq-answer">Our intelligent compression algorithm reduces file size while maintaining visual quality. You can adjust the quality slider to find the perfect balance between file size and image quality for your needs.</div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">Is there a limit to how many images I can compress?</div>
+                        <div class="faq-answer">You can compress up to 20 images at once, with each image having a maximum size of 10MB. There's no daily limit—you can use ImageCrisp Pro as much as you need.</div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">Why should I compress my images?</div>
+                        <div class="faq-answer">Compressed images load faster on websites, use less bandwidth, take up less storage space, and improve overall user experience. For web developers, it's essential for SEO and performance optimization.</div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">Do you keep copies of my compressed images?</div>
+                        <div class="faq-answer">No. Since all processing happens in your browser, we have no access to your images and therefore cannot store them. Your compressed images only exist on your device.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact" class="section legal-section">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <div class="legal-content">
+                    <h3>Get in Touch</h3>
+                    <p>We value your feedback, questions, and suggestions. Here's how you can reach us:</p>
+                    
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div style="margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--color-off-white); border-radius: 8px;">
+                        <h3>Email Contact</h3>
+                        <p>Prefer to email directly? You can reach us at:</p>
+                        <p style="font-size: 1.25rem; font-weight: 600; margin: var(--spacing-md) 0;">
+                            <a href="mailto:contact@imagecrisppro.com">contact@imagecrisppro.com</a>
+                        </p>
+                        <p><strong>Response Time:</strong> We aim to respond to all inquiries within 24-48 hours during business days.</p>
+                    </div>
+                    
+                    <div style="margin-top: var(--spacing-xl);">
+                        <h3>Business Hours</h3>
+                        <p>Our support team is available Monday through Friday, 9:00 AM to 5:00 PM (EST).</p>
+                        
+                        <h3>For Legal Inquiries</h3>
+                        <p>Legal matters can be directed to: <a href="mailto:legal@imagecrisppro.com">legal@imagecrisppro.com</a></p>
+                        
+                        <h3>For Privacy Concerns</h3>
+                        <p>Privacy-related questions: <a href="mailto:privacy@imagecrisppro.com">privacy@imagecrisppro.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <h3>ImageCrisp Pro</h3>
+                        <p>Professional image compression for the modern web. Fast, secure, and free.</p>
+                    </div>
+                    
+                    <div>
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#tool">Compressor Tool</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#privacy">Privacy Policy</a></li>
+                            <li><a href="#terms">Terms of Use</a></li>
+                            <li><a href="#contact">Contact Us</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3>Support</h3>
+                        <ul class="footer-links">
+                            <li><a href="#contact">Contact Support</a></li>
+                            <li><a href="#faq">Help Center</a></li>
+                            <li><a href="mailto:contact@imagecrisppro.com">Email Us</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3>Legal</h3>
+                        <ul class="footer-links">
+                            <li><a href="#privacy">Privacy Policy</a></li>
+                            <li><a href="#terms">Terms of Service</a></li>
+                            <li><a href="#terms">Cookie Policy</a></li>
+                            <li><a href="#terms">Disclaimer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>© 2025 ImageCrisp Pro. All rights reserved. This tool processes images locally in your browser—no data is sent to external servers.</p>
+                    <p class="mt-1">Google AdSense compliant. For advertising inquiries, contact <a href="mailto:ads@imagecrisppro.com">ads@imagecrisppro.com</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // ===== STATE MANAGEMENT =====
+        let selectedImages = [];
+        let compressedResults = [];
+        let currentFormat = 'image/jpeg';
+
+        // ===== DOM ELEMENTS =====
+        const elements = {
+            fileInput: document.getElementById('fileInput'),
+            uploadButton: document.getElementById('uploadButton'),
+            uploadArea: document.getElementById('uploadArea'),
+            compressBtn: document.getElementById('compressBtn'),
+            resetBtn: document.getElementById('resetBtn'),
+            downloadAllBtn: document.getElementById('downloadAllBtn'),
+            qualitySlider: document.getElementById('qualitySlider'),
+            qualityValue: document.getElementById('qualityValue'),
+            errorMessage: document.getElementById('errorMessage'),
+            imageGridContainer: document.getElementById('imageGridContainer'),
+            imageGrid: document.getElementById('imageGrid'),
+            imageCount: document.getElementById('imageCount'),
+            loaderContainer: document.getElementById('loaderContainer'),
+            loaderText: document.getElementById('loaderText'),
+            previewSection: document.getElementById('previewSection'),
+            previewGrid: document.getElementById('previewGrid'),
+            sidebar: document.getElementById('sidebar'),
+            sidebarToggle: document.getElementById('sidebarToggle'),
+            mainContent: document.getElementById('mainContent'),
+            contactForm: document.getElementById('contactForm')
+        };
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            updateQualityDisplay();
+            setupEventListeners();
+            setupDownloadHandlers();
+            setupNavigation();
+            setupContactForm();
+        });
+
+        // ===== EVENT LISTENERS SETUP =====
+        function setupEventListeners() {
+            // File selection
+            elements.uploadButton.addEventListener('click', () => elements.fileInput.click());
+            elements.fileInput.addEventListener('change', handleFileSelect);
+            
+            // Drag and drop
+            elements.uploadArea.addEventListener('dragover', handleDragOver);
+            elements.uploadArea.addEventListener('dragleave', handleDragLeave);
+            elements.uploadArea.addEventListener('drop', handleDrop);
+            
+            // Controls
+            elements.qualitySlider.addEventListener('input', updateQualityDisplay);
+            document.querySelectorAll('input[name="format"]').forEach(radio => {
+                radio.addEventListener('change', (e) => currentFormat = e.target.value);
+            });
+            
+            // Action buttons
+            elements.compressBtn.addEventListener('click', compressImages);
+            elements.resetBtn.addEventListener('click', resetTool);
+            elements.downloadAllBtn.addEventListener('click', downloadAllImages);
+            
+            // Sidebar toggle
+            elements.sidebarToggle.addEventListener('click', toggleSidebar);
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && 
+                    elements.sidebar.classList.contains('active') &&
+                    !elements.sidebar.contains(e.target) &&
+                    !elements.sidebarToggle.contains(e.target)) {
+                    toggleSidebar();
+                }
+            });
+        }
+
+        // ===== SETUP DOWNLOAD HANDLERS =====
+        function setupDownloadHandlers() {
+            // Event delegation for download buttons
+            elements.previewGrid.addEventListener('click', function(e) {
+                // Check if a download button was clicked
+                const downloadBtn = e.target.closest('.download-btn');
+                if (downloadBtn) {
+                    const imageId = downloadBtn.getAttribute('data-id');
+                    downloadSingleImage(imageId);
+                }
+            });
+        }
+
+        // ===== SETUP NAVIGATION =====
+        function setupNavigation() {
+            // Update active links on scroll
+            window.addEventListener('scroll', updateActiveLink);
+            
+            // Handle sidebar link clicks
+            document.querySelectorAll('.sidebar-link, .nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Update active states
+                        document.querySelectorAll('.sidebar-link, .nav-link').forEach(l => {
+                            l.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Scroll to section
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close sidebar on mobile
+                        if (window.innerWidth <= 768) {
+                            toggleSidebar();
+                        }
+                    }
+                });
+            });
+        }
+
+        function updateActiveLink() {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollPos = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPos >= sectionTop && scrollPos <= sectionBottom) {
+                    document.querySelectorAll('.sidebar-link, .nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        function toggleSidebar() {
+            elements.sidebar.classList.toggle('active');
+            elements.mainContent.classList.toggle('with-sidebar');
+        }
+
+        // ===== SETUP CONTACT FORM =====
+        function setupContactForm() {
+            if (elements.contactForm) {
+                elements.contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        email: document.getElementById('email').value,
+                        subject: document.getElementById('subject').value,
+                        message: document.getElementById('message').value
+                    };
+                    
+                    // In a real implementation, you would send this to a server
+                    // For now, we'll simulate a successful submission
+                    const mailtoLink = `mailto:contact@imagecrisppro.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+                    
+                    window.location.href = mailtoLink;
+                    
+                    // Reset form
+                    elements.contactForm.reset();
+                    
+                    // Show success message
+                    alert('Thank you for your message! Your email client will open with your message. Please send the email to contact us.');
+                });
+            }
+        }
+
+        // ===== FILE HANDLING =====
+        function handleFileSelect(e) {
+            const files = Array.from(e.target.files);
+            processSelectedFiles(files);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            elements.uploadArea.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            elements.uploadArea.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            elements.uploadArea.classList.remove('drag-over');
+            const files = Array.from(e.dataTransfer.files);
+            processSelectedFiles(files);
+        }
+
+        function processSelectedFiles(files) {
+            // Clear previous errors
+            hideError();
+            
+            // Validate files
+            const validFiles = files.filter(file => {
+                const isValidType = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
+                const isValidSize = file.size <= 10 * 1024 * 1024; // 10MB max
+                
+                if (!isValidType) {
+                    showError(`Unsupported file type: ${file.name}. Please use JPG, PNG, or WebP.`);
+                    return false;
+                }
+                
+                if (!isValidSize) {
+                    showError(`File too large: ${file.name}. Maximum size is 10MB.`);
+                    return;
+                }
+                
+                return true;
+            });
+            
+            // Check total count
+            if (selectedImages.length + validFiles.length > 20) {
+                showError('Maximum 20 images allowed. Please select fewer images.');
+                return;
+            }
+            
+            // Process valid files
+            validFiles.forEach(file => {
+                addImageToSelection(file);
+            });
+            
+            // Update UI
+            updateSelectionUI();
+            elements.fileInput.value = ''; // Reset input
+        }
+
+        function addImageToSelection(file) {
+            const reader = new FileReader();
+            
+            reader.onload = (e) => {
+                const image = {
+                    id: Date.now() + Math.random().toString(36).substr(2, 9), // Unique string ID
+                    file: file,
+                    url: e.target.result,
+                    name: file.name,
+                    originalSize: file.size
+                };
+                
+                selectedImages.push(image);
+                createImageThumbnail(image);
+                updateSelectionUI();
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function createImageThumbnail(image) {
+            const item = document.createElement('div');
+            item.className = 'image-item';
+            item.id = `image-${image.id}`;
+            item.innerHTML = `
+                <img src="${image.url}" alt="${image.name}">
+                <div class="image-info">
+                    <div class="image-name">${image.name}</div>
+                    <div class="image-size">${formatBytes(image.originalSize)}</div>
+                </div>
+                <button class="image-remove" onclick="removeSelectedImage('${image.id}')">×</button>
+            `;
+            elements.imageGrid.appendChild(item);
+        }
+
+        // ===== IMAGE MANAGEMENT =====
+        window.removeSelectedImage = function(id) {
+            selectedImages = selectedImages.filter(img => img.id !== id);
+            const item = document.getElementById(`image-${id}`);
+            if (item) item.remove();
+            updateSelectionUI();
+        };
+
+        function updateSelectionUI() {
+            const hasImages = selectedImages.length > 0;
+            
+            if (hasImages) {
+                elements.imageGridContainer.classList.remove('hidden');
+                elements.compressBtn.disabled = false;
+            } else {
+                elements.imageGridContainer.classList.add('hidden');
+                elements.compressBtn.disabled = true;
+            }
+            
+            elements.imageCount.textContent = `${selectedImages.length} image${selectedImages.length !== 1 ? 's' : ''}`;
+        }
+
+        // ===== COMPRESSION LOGIC (FIXED: Preserves Aspect Ratio) =====
+        async function compressImages() {
+            if (selectedImages.length === 0) return;
+            
+            // Clear previous results
+            compressedResults = [];
+            elements.previewGrid.innerHTML = '';
+            elements.previewSection.classList.add('hidden');
+            elements.downloadAllBtn.classList.add('hidden');
+            
+            // Show loader
+            elements.loaderContainer.classList.remove('hidden');
+            elements.compressBtn.disabled = true;
+            
+            const quality = parseFloat(elements.qualitySlider.value);
+            
+            // Process each image
+            for (let i = 0; i < selectedImages.length; i++) {
+                const image = selectedImages[i];
+                elements.loaderText.textContent = `Processing ${i + 1} of ${selectedImages.length}: ${image.name}`;
+                
+                try {
+                    const result = await compressSingleImage(image, quality);
+                    compressedResults.push(result);
+                    
+                } catch (error) {
+                    console.error('Compression error:', error);
+                    showError(`Failed to compress ${image.name}. Please try again.`);
+                }
+            }
+            
+            // Hide loader
+            elements.loaderContainer.classList.add('hidden');
+            elements.compressBtn.disabled = false;
+            
+            // Show results
+            if (compressedResults.length > 0) {
+                displayCompressionResults();
+                elements.previewSection.classList.remove('hidden');
+                elements.downloadAllBtn.classList.remove('hidden');
+            }
+        }
+
+        function compressSingleImage(image, quality) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => {
+                    // Create canvas with EXACT original dimensions (FIXED)
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas to original image dimensions - NO RESIZING
+                    canvas.width = img.naturalWidth;
+                    canvas.height = img.naturalHeight;
+                    
+                    // Draw image on canvas at original size
+                    if (currentFormat === 'image/jpeg') {
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    }
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    // Compress to data URL (preserves aspect ratio)
+                    const mimeType = currentFormat;
+                    const dataUrl = canvas.toDataURL(mimeType, quality);
+                    
+                    // Calculate compressed size
+                    const base64Length = dataUrl.length - `data:${mimeType};base64,`.length;
+                    const compressedSize = Math.round((base64Length * 3) / 4); // Approximate byte size
+                    
+                    resolve({
+                        ...image,
+                        compressedUrl: dataUrl,
+                        compressedSize: compressedSize,
+                        originalWidth: img.naturalWidth,
+                        originalHeight: img.naturalHeight,
+                        reduction: ((image.originalSize - compressedSize) / image.originalSize * 100).toFixed(1)
+                    });
+                };
+                
+                img.onerror = reject;
+                img.src = image.url;
+            });
+        }
+
+        // ===== RESULT DISPLAY =====
+        function displayCompressionResults() {
+            elements.previewGrid.innerHTML = '';
+            
+            compressedResults.forEach(result => {
+                const card = document.createElement('div');
+                card.className = 'preview-card';
+                
+                // Determine file extension
+                let extension = 'jpg';
+                if (currentFormat === 'image/png') extension = 'png';
+                if (currentFormat === 'image/webp') extension = 'webp';
+                
+                // Clean filename
+                const fileName = result.name.split('.')[0];
+                
+                card.innerHTML = `
+                    <div class="preview-header">
+                        <h4>${result.name}</h4>
+                        <span class="reduction-badge">${result.reduction}% smaller</span>
+                    </div>
+                    <div class="preview-image-container">
+                        <img src="${result.compressedUrl}" alt="Compressed ${result.name}" class="preview-image">
+                        <p class="text-muted mt-1">Dimensions: ${result.originalWidth} × ${result.originalHeight}px (Aspect ratio preserved)</p>
+                    </div>
+                    <div class="size-info">
+                        <span class="size-original">Original: ${formatBytes(result.originalSize)}</span>
+                        <span class="size-compressed">Compressed: ${formatBytes(result.compressedSize)}</span>
+                    </div>
+                    <button class="btn btn-secondary mt-2 download-btn" data-id="${result.id}" style="width: 100%;">
+                        <span>⬇️</span> Download
+                    </button>
+                `;
+                elements.previewGrid.appendChild(card);
+            });
+        }
+
+        // ===== DOWNLOAD FUNCTIONS =====
+        function downloadSingleImage(id) {
+            console.log('Downloading image with ID:', id);
+            
+            // Find the image by ID
+            const result = compressedResults.find(r => r.id === id);
+            
+            if (!result) {
+                console.error('Image not found for ID:', id);
+                return;
+            }
+            
+            if (!result.compressedUrl) {
+                console.error('No compressed URL found for image:', result.name);
+                return;
+            }
+            
+            const link = document.createElement('a');
+            link.href = result.compressedUrl;
+            
+            // Determine file extension
+            let extension = 'jpg';
+            if (currentFormat === 'image/png') extension = 'png';
+            if (currentFormat === 'image/webp') extension = 'webp';
+            
+            // Clean filename
+            const fileName = result.name.split('.')[0];
+            link.download = `compressed_${fileName}.${extension}`;
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            console.log('Download started for:', result.name);
+        }
+
+        async function downloadAllImages() {
+            if (compressedResults.length === 0) return;
+            
+            // For multiple images, we download them sequentially
+            for (const result of compressedResults) {
+                await new Promise(resolve => {
+                    const link = document.createElement('a');
+                    link.href = result.compressedUrl;
+                    
+                    // Determine file extension
+                    let extension = 'jpg';
+                    if (currentFormat === 'image/png') extension = 'png';
+                    if (currentFormat === 'image/webp') extension = 'webp';
+                    
+                    // Clean filename
+                    const fileName = result.name.split('.')[0];
+                    link.download = `compressed_${fileName}.${extension}`;
+                    
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Small delay between downloads
+                    setTimeout(resolve, 100);
+                });
+            }
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        function updateQualityDisplay() {
+            const value = (elements.qualitySlider.value * 100).toFixed(0);
+            elements.qualityValue.textContent = `${value}%`;
+        }
+
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+
+        function showError(message) {
+            elements.errorMessage.textContent = message;
+            elements.errorMessage.style.display = 'block';
+            setTimeout(hideError, 5000);
+        }
+
+        function hideError() {
+            elements.errorMessage.style.display = 'none';
+        }
+
+        function resetTool() {
+            // Clear all data
+            selectedImages = [];
+            compressedResults = [];
+            
+            // Reset UI
+            elements.imageGrid.innerHTML = '';
+            elements.previewGrid.innerHTML = '';
+            
+            elements.imageGridContainer.classList.add('hidden');
+            elements.previewSection.classList.add('hidden');
+            elements.downloadAllBtn.classList.add('hidden');
+            elements.loaderContainer.classList.add('hidden');
+            hideError();
+            
+            elements.compressBtn.disabled = true;
+            
+            // Reset controls
+            elements.qualitySlider.value = 0.8;
+            updateQualityDisplay();
+            
+            // Reset format to JPG
+            document.getElementById('formatJpeg').checked = true;
+            currentFormat = 'image/jpeg';
+            
+            elements.fileInput.value = '';
+        }
+    </script>
+</body>
+</html>
